@@ -68,7 +68,7 @@ public int compareTo(Individual other) {
 }
 
 public Individual reproduce() {
-    Individual child = new Individual(this.getCurrentPosition(), -Math.log(1 - Math.random()) * /* need mu from params */);
+    Individual child = new Individual(this.getCurrentPosition(), -Math.log(1 - Math.random()) * 1/* need mu from params */);
     // Copy some characteristics from parent if needed
     return child;
 }
