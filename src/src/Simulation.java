@@ -105,9 +105,10 @@ public class Simulation {
     }
 
     private void observe(double time) {
-        System.out.println("| Observation " + observationCount + ": | Present time: | " + time + " |");
+        System.out.println("| Observation " + observationCount + ": | Time: " + time + " | Population: " + population.size() + " |");
         observationCount++;
     }
+
 
     private void printParameters() {
         System.out.println(params.n + " " + params.m + " " +

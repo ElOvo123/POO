@@ -71,6 +71,8 @@ public class Grid {
             }
         }
 
+        System.out.println("Possible moves from " + current + ": " + possibleMoves);
+
         return possibleMoves;
     }
     

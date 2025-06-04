@@ -10,6 +10,7 @@ public class Individual implements Comparable<Individual> {
         this.path = new ArrayList<>();
         this.path.add(start);
         this.deathTime = deathTime;
+        this.comfort = 0.5; // Prevent NaN in log() before moving
     }
     
     public void calculateComfort(Params params, Grid grid) {
@@ -69,15 +70,17 @@ public class Individual implements Comparable<Individual> {
     public int compareTo(Individual other) {
         return Double.compare(this.comfort, other.comfort);
     }
-        public void move(Point newPos) {
+    
+    public void move(Point newPos, Grid grid, Params params) {
         path.add(newPos);
-        // Recalculate comfort after moving
-        // Note: You'll need to pass params and grid to this method
+        calculateComfort(params, grid);
     }
 
+
     public Individual reproduce() {
-        Individual child = new Individual(this.getCurrentPosition(), -Math.log(1 - Math.random()) * 1/* need mu from params */);
-        // Copy some characteristics from parent if needed
+        Individual child = new Individual(this.getCurrentPosition(), -Math.log(1 - Math.random()) * 1);
+        child.path.addAll(this.path); // inherit path
         return child;
     }
+
 }
