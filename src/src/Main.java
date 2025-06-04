@@ -3,9 +3,11 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
-/*
+
 public class Main {
     public static void main(String[] args) {
+        Params params;
+
         try {
             //Params params;
             if (args[0].equals("-f")) {
@@ -25,11 +27,9 @@ public class Main {
             System.exit(1);
         }
     }
-}*/
+}
 
-import java.util.*;
-
-public class Main {
+/*public class Main {
     public static void main(String[] args) {
         int width = 5;
         int height = 5;
@@ -50,5 +50,5 @@ public class Main {
             System.out.println(" → " + p + " (cost: " + cost + ")");
         }
     }
-}
+}*/
 

@@ -33,43 +33,51 @@ public class Individual implements Comparable<Individual> {
         return totalCost;
     }
     // Add these methods to Individual class
-public Point getCurrentPosition() {
-    return path.get(path.size() - 1);
-}
-
-public double getComfort() {
-    return comfort;
-}
-
-public List<Point> getPath() {
-    return new ArrayList<>(path); // Return a copy
-}
-
-public double getCost(Grid grid) {
-    double total = 0;
-    for (int i = 0; i < path.size() - 1; i++) {
-        total += grid.getEdgeCost(path.get(i), path.get(i + 1));
+    public Point getCurrentPosition() {
+        return path.get(path.size() - 1);
     }
-    return total;
-}
 
-public double getDeathTime() {
-    return deathTime;
-}
+    public double getComfort() {
+        return comfort;
+    }
 
-@Override
-public int compareTo(Individual other) {
-    return Double.compare(this.comfort, other.comfort);
-}
-    public void move(Point newPos) {
-    path.add(newPos);
-    // Recalculate comfort after moving
-    // Note: You'll need to pass params and grid to this method
-}
+    public List<Point> getPath() {
+        return new ArrayList<>(path); // Return a copy
+    }
 
-public Individual reproduce() {
-    Individual child = new Individual(this.getCurrentPosition(), -Math.log(1 - Math.random()) * 1/* need mu from params */);
-    // Copy some characteristics from parent if needed
-    return child;
-}
+    public double getCost(Grid grid) {
+        double total = 0;
+        for (int i = 0; i < path.size() - 1; i++) {
+            total += grid.getEdgeCost(path.get(i), path.get(i + 1));
+        }
+        return total;
+    }
+
+    private int getMaxEdgeCost(List<CostZone> costZones) {
+        int max = 1;
+        for (CostZone zone : costZones) {
+            max = Math.max(max, zone.getCost());
+        }
+        return max;
+    }
+
+    public double getDeathTime() {
+        return deathTime;
+    }
+
+    @Override
+    public int compareTo(Individual other) {
+        return Double.compare(this.comfort, other.comfort);
+    }
+        public void move(Point newPos) {
+        path.add(newPos);
+        // Recalculate comfort after moving
+        // Note: You'll need to pass params and grid to this method
+    }
+
+    public Individual reproduce() {
+        Individual child = new Individual(this.getCurrentPosition(), -Math.log(1 - Math.random()) * 1/* need mu from params */);
+        // Copy some characteristics from parent if needed
+        return child;
+    }
 }
