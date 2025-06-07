@@ -14,7 +14,6 @@ public class Main {
                 throw new IllegalArgumentException("Invalid mode. Use -f for file or -r for random.");
             }
 
-            
             Simulation simulation = new Simulation(params);
             simulation.run();
         } catch (Exception e) {
@@ -25,26 +24,5 @@ public class Main {
     }
 }
 
-/*public class Main {
-    public static void main(String[] args) {
-        int width = 5;
-        int height = 5;
 
-        Set<Point> obstacles = new HashSet<>(); // No obstacles so we can see all edges
-
-        List<CostZone> costZones = new ArrayList<>();
-        costZones.add(new CostZone(new Point(2, 2), new Point(3, 3), 5)); // Cost zone with cost 5
-
-        Grid grid = new Grid(width, height, obstacles, costZones);
-
-        Point current = new Point(2, 2);
-        List<Point> moves = grid.getPossibleMoves(current);
-
-        System.out.println("Valid moves from " + current + ":");
-        for (Point p : moves) {
-            int cost = grid.getEdgeCost(current, p);
-            System.out.println(" → " + p + " (cost: " + cost + ")");
-        }
-    }
-}*/
 
