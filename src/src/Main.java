@@ -1,12 +1,11 @@
-// Main.java - Entry point
+
+
 
 public class Main {
     public static void main(String[] args) {
-        Params params;
-
         try {
-            //Params params;
-            if (args[0].equals("-f")) {
+            Params params;
+            if (args.length == 2 && "-f".equalsIgnoreCase(args[0])) {
                 params = ParamsParser.fromFile(args[1]);
             } else if (args[0].equals("-r")) {
                 params = ParamsParser.randomParams(args);
