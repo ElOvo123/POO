@@ -1,7 +1,6 @@
 import java.util.List;
 import java.util.Set;
 
-// Params.java - Holds all simulation parameters
 public class Params {
     public final int n, m; // Grid dimensions
     public final Point start, end;
