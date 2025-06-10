@@ -142,8 +142,9 @@ public class Simulation {
 
     private List<Point> getPossibleMoves(Point current) {
         List<Point> moves = new ArrayList<>();
-        int[] dx = {-1, 0, 1, 0};
-        int[] dy = {0, 1, 0, -1};
+        // Directions: North, East, South, West (1-based coordinates)
+        int[] dx = {0, 1, 0, -1};  // Changed from {-1, 0, 1, 0}
+        int[] dy = {1, 0, -1, 0};  // Changed from {0, 1, 0, -1}
 
         for (int i = 0; i < 4; i++) {
             int newX = current.x + dx[i];
@@ -160,7 +161,7 @@ public class Simulation {
 
     private boolean isValidMove(Point p) {
         // Check grid boundaries
-        if (p.x < 0 || p.x >= gridWidth || p.y < 0 || p.y >= gridHeight) {
+        if (p.x < 1 || p.x > gridWidth || p.y < 1 || p.y > gridHeight) {
             return false;
         }
 

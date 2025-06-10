@@ -61,8 +61,8 @@ public class ParamsParser {
         
         int n = Integer.parseInt(args[0]);
         int m = Integer.parseInt(args[1]);
-        Point start = new Point(Integer.parseInt(args[2]), Integer.parseInt(args[3]));
-        Point end = new Point(Integer.parseInt(args[4]), Integer.parseInt(args[5]));
+        Point start = new Point(1 + (int) (Math.random() * n), 1 + (int) (Math.random() * m));
+        Point end = new Point(1 + (int) (Math.random() * n), 1 + (int) (Math.random() * m));
         int numZones = Integer.parseInt(args[6]);
         int numObstacles = Integer.parseInt(args[7]);
         int cmax = Integer.parseInt(args[8]);
@@ -77,18 +77,21 @@ public class ParamsParser {
         
         List<CostZone> zones = new ArrayList<>();
         for (int i = 0; i < numZones; i++) {
-            Point topLeft = new Point((int) (Math.random() * n), (int) (Math.random() * m));
-            Point bottomRight = new Point(
-                topLeft.x + (int) (Math.random() * (n - topLeft.x)),
-                topLeft.y + (int) (Math.random() * (m - topLeft.y))
-            );
+            int x1 = 1 + (int) (Math.random() * n);
+            int y1 = 1 + (int) (Math.random() * m);
+            int x2 = x1 + (int) (Math.random() * (n - x1 + 1));
+            int y2 = y1 + (int) (Math.random() * (m - y1 + 1));
+            x2 = Math.min(x2, n);
+            y2 = Math.min(y2, m);
+            Point topLeft = new Point(x1, y1);
+            Point bottomRight = new Point(x2, y2);
             double cost = 1 + Math.random() * (cmax - 1);
             zones.add(new CostZone(topLeft, bottomRight, cost));
         }
         
         List<Point> obstacles = new ArrayList<>();
         for (int i = 0; i < numObstacles; i++) {
-            Point obstacle = new Point((int) (Math.random() * n), (int) (Math.random() * m));
+            Point obstacle = new Point(1 + (int) (Math.random() * n), 1 + (int) (Math.random() * m));
             if (!obstacle.equals(start) && !obstacle.equals(end)) {
                 obstacles.add(obstacle);
             }

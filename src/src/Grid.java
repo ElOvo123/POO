@@ -36,7 +36,7 @@ public class Grid {
     
     public boolean isValidMove(Point from, Point to) {
         // Check if move is within grid bounds
-        if (to.x < 0 || to.x >= width || to.y < 0 || to.y >= height) {
+        if (to.x < 1 || to.x > width || to.y < 1 || to.y > height) {
             return false;
         }
         
