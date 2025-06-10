@@ -40,14 +40,21 @@ public class Individual implements Comparable<Individual> {
     }
     
     public void move(Point newPosition) {
-        // Check if the new position is already in the path
-        int index = path.indexOf(newPosition);
-        if (index != -1) {
-            // Remove the cycle
-            while (path.size() > index + 1) {
-                path.remove(path.size() - 1);
-            }
+        // If this is the first move and we're at the start position
+        if (path.size() == 1 && path.get(0).equals(newPosition)) {
+            return; // Don't add duplicate start position
         }
+        
+        // Don't add if it's the same as the last position
+        if (path.get(path.size() - 1).equals(newPosition)) {
+            return;
+        }
+        
+        // Don't add if the position is already in the path
+        if (path.contains(newPosition)) {
+            return;
+        }
+        
         path.add(newPosition);
         comfort = calculateComfort();
     }

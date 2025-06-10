@@ -61,8 +61,8 @@ public class ParamsParser {
         
         int n = Integer.parseInt(args[0]);
         int m = Integer.parseInt(args[1]);
-        Point start = new Point(1 + (int) (Math.random() * n), 1 + (int) (Math.random() * m));
-        Point end = new Point(1 + (int) (Math.random() * n), 1 + (int) (Math.random() * m));
+        Point start = new Point(Integer.parseInt(args[2]), Integer.parseInt(args[3]));
+        Point end = new Point(Integer.parseInt(args[4]), Integer.parseInt(args[5]));
         int numZones = Integer.parseInt(args[6]);
         int numObstacles = Integer.parseInt(args[7]);
         int cmax = Integer.parseInt(args[8]);
