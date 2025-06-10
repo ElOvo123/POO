@@ -9,3 +9,4 @@ fi
 echo
 java -jar project.jar -f input.txt
 echo "===================================================================" 
+read -p "Prima ENTER para sair..."
