@@ -65,13 +65,14 @@ public class ParamsParser {
             }
 
             return new Params(n, m, start, end, zones, obstacles,
-                               p1, p2, p3, p4, p5, p6, p7);
+                               p1, p2, p3, p4, p5, p6, p7,
+                               100, 1000, 1.0, 0.1, 0.1, 0.1, 1000.0);
         }
     }
 
     public static Params randomParams(String[] args) {
-        if (args.length < 16) {
-            throw new IllegalArgumentException("São necessários pelo menos 16 argumentos para randomParams");
+        if (args.length < 23) {
+            throw new IllegalArgumentException("São necessários pelo menos 23 argumentos para randomParams");
         }
         int idx = 0;
         int n = Integer.parseInt(args[idx++]);
@@ -114,10 +115,18 @@ public class ParamsParser {
         int p4 = Integer.parseInt(args[idx++]);
         int p5 = Integer.parseInt(args[idx++]);
         int p6 = Integer.parseInt(args[idx++]);
-        int p7 = Integer.parseInt(args[idx]);
+        int p7 = Integer.parseInt(args[idx++]);
+        int initialPop = Integer.parseInt(args[idx++]);
+        int maxPop = Integer.parseInt(args[idx++]);
+        double k = Double.parseDouble(args[idx++]);
+        double mu = Double.parseDouble(args[idx++]);
+        double delta = Double.parseDouble(args[idx++]);
+        double rho = Double.parseDouble(args[idx++]);
+        double finalTime = Double.parseDouble(args[idx]);
 
         return new Params(n, m, start, end, zones, obstacles,
-                           p1, p2, p3, p4, p5, p6, p7);
+                           p1, p2, p3, p4, p5, p6, p7,
+                           initialPop, maxPop, k, mu, delta, rho, finalTime);
     }
 
     private static void validarDimensoes(int n, int m) {

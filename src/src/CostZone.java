@@ -1,5 +1,3 @@
-import java.util.List;
-
 // CostZone.java - Represents a special cost area
 public class CostZone {
     public final Point bottomLeft;

@@ -23,9 +23,8 @@ public class MoveEvent extends Event {
 
             System.out.println("🚶‍♂️ Moved to " + newPos + " | Comfort: " + individual.getComfort());
 
-            // 🎯 Check if reached goal
             if (newPos.equals(simulation.getParams().end)) {
-                System.out.println("🎯 Reached the goal at time " + time + "!");
+                System.out.println("Reached the goal at time " + time + "!");
             }
         }
 
