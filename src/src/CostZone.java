@@ -1,12 +1,12 @@
 // CostZone.java - Represents a special cost area
 public class CostZone {
-    public final Point bottomLeft;
-    public final Point topRight;
-    public final int cost;
+    private Point topLeft;
+    private Point bottomRight;
+    private double cost;
     
-    public CostZone(Point bottomLeft, Point topRight, int cost) {
-        this.bottomLeft = bottomLeft;
-        this.topRight = topRight;
+    public CostZone(Point topLeft, Point bottomRight, double cost) {
+        this.topLeft = topLeft;
+        this.bottomRight = bottomRight;
         this.cost = cost;
     }
     
@@ -17,17 +17,34 @@ public class CostZone {
         }
         
         // Then check if they form a border edge
-        return (p1.x == bottomLeft.x || p1.x == topRight.x || p1.y == bottomLeft.y || p1.y == topRight.y) &&
-               (p2.x == bottomLeft.x || p2.x == topRight.x || p2.y == bottomLeft.y || p2.y == topRight.y) &&
+        return (p1.x == topLeft.x || p1.x == bottomRight.x || p1.y == topLeft.y || p1.y == bottomRight.y) &&
+               (p2.x == topLeft.x || p2.x == bottomRight.x || p2.y == topLeft.y || p2.y == bottomRight.y) &&
                // And they are adjacent
                (Math.abs(p1.x - p2.x) + Math.abs(p1.y - p2.y) == 1);
     }
 
     private boolean isWithinZone(Point p) {
-        return p.x >= bottomLeft.x && p.x <= topRight.x && p.y >= bottomLeft.y && p.y <= topRight.y;
+        return p.x >= topLeft.x && p.x <= bottomRight.x && p.y >= topLeft.y && p.y <= bottomRight.y;
     }
 
-    public int getCost() {
+    public Point getTopLeft() {
+        return topLeft;
+    }
+
+    public Point getBottomRight() {
+        return bottomRight;
+    }
+
+    public double getCost() {
         return cost;
+    }
+
+    @Override
+    public String toString() {
+        return "CostZone{" +
+                "topLeft=" + topLeft +
+                ", bottomRight=" + bottomRight +
+                ", cost=" + cost +
+                '}';
     }
 }

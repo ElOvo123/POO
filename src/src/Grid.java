@@ -27,7 +27,7 @@ public class Grid {
         for (CostZone zone : costZones) {
             if (zone.containsEdge(p1, p2)) {
                 // If edge is in a cost zone, track the maximum cost
-                maxCost = Math.max(maxCost, zone.getCost());
+                maxCost = Math.max(maxCost, (int)Math.ceil(zone.getCost()));
             }
         }
         
@@ -36,7 +36,7 @@ public class Grid {
     
     public boolean isValidMove(Point from, Point to) {
         // Check if move is within grid bounds
-        if (to.x < 1 || to.x > width || to.y < 1 || to.y > height) {
+        if (to.x < 0 || to.x >= width || to.y < 0 || to.y >= height) {
             return false;
         }
         
@@ -64,14 +64,16 @@ public class Grid {
         ));
         Collections.shuffle(directions);  // Randomize the order
 
-        
         for (Point neighbor : directions) {
             if (isValidMove(current, neighbor)) {
                 possibleMoves.add(neighbor);
             }
         }
 
-        System.out.println("Possible moves from " + current + ": " + possibleMoves);
+        // Only print valid moves
+        if (!possibleMoves.isEmpty()) {
+            System.out.println("Possible moves from " + current + ": " + possibleMoves);
+        }
 
         return possibleMoves;
     }

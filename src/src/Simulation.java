@@ -1,162 +1,212 @@
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.*;
 
 // Simulation.java - Main controller
 public class Simulation {
-    private final Params params;
-    private final Grid grid;
-    private final List<Individual> population;
-    private final PEC pec;
+    private static int gridWidth;
+    private static int gridHeight;
+    private static Point startPoint;
+    private static Point endPoint;
+    private static List<CostZone> costZones;
+    private static List<Point> obstacles;
+    private static int maxCost;
+    private static int maxTime;
+    private static int populationSize;
+    private static int maxPopulation;
+    private static double deathRate;
+    private static double reproductionRate;
+    private static double mutationRate;
+    private static double moveRate;
+    private static double comfortThreshold;
+
+    private List<Individual> population;
+    private PriorityQueue<Event> pendingEvents;
     private double currentTime;
-    private int eventCount;
-    private int observationCount = 0;
+    private Individual bestIndividual;
 
     public Simulation(Params params) {
-        this.params = params;
-        this.grid = new Grid(params.n, params.m, params.obstacles, params.costZones);
-        this.population = new ArrayList<>();
-        this.pec = new PEC();
-        initialize();
-        printParameters();
-    }
+        // Initialize static parameters
+        gridWidth = params.n;
+        gridHeight = params.m;
+        startPoint = params.start;
+        endPoint = params.end;
+        costZones = params.zones;
+        obstacles = params.obstacles;
+        maxCost = params.cmax;
+        maxTime = 500; // Reduced maximum time
+        populationSize = 50; // Reduced population size
+        maxPopulation = 100; // Reduced maximum population
+        deathRate = params.deathrate;
+        reproductionRate = params.reprate;
+        mutationRate = params.mutrate;
+        moveRate = params.moverate;
+        comfortThreshold = params.comfort;
 
-    private void initialize() {
+        // Initialize simulation state
+        population = new ArrayList<>();
+        pendingEvents = new PriorityQueue<>(Comparator.comparingDouble(Event::getTime));
+        currentTime = 0;
+        bestIndividual = null;
+
         // Create initial population
-        for (int i = 0; i < params.initialPop; i++) {
-            double deathTime = -Math.log(1 - Math.random()) * params.mu;
-            Individual ind = new Individual(params.start, deathTime);
+        for (int i = 0; i < populationSize; i++) {
+            Individual ind = new Individual(startPoint);
             population.add(ind);
-
-            // Schedule initial events
-            pec.addEvent(new DeathEvent(deathTime, ind));
-            pec.addEvent(new MoveEvent(calculateNextMoveTime(ind), ind));
-            pec.addEvent(new ReproductionEvent(calculateNextReproductionTime(ind), ind));
+            scheduleEvents(ind);
         }
-    }
-
-    public List<Individual> getIndividuals() {
-        return population;
-    }
-
-    public Grid getGrid() {
-        return grid;
-    }
-
-    public PEC getPEC() {
-        return pec;
-    }
-
-    public List<Individual> getPopulation() {
-        return population;
-    }
-
-    public Params getParams() {
-        return params;
     }
 
     public void run() {
-        printParameters();
-        observe(0); // Initial observation
-
-        double observationInterval = params.finalTime / 20;
-        double nextObservationTime = observationInterval;
-
-        while (currentTime < params.finalTime && !pec.isEmpty()) {
-            Event event = pec.nextEvent();
-            currentTime = event.time;
-
-            if (currentTime > params.finalTime) break;
-
+        while (!pendingEvents.isEmpty() && currentTime < maxTime) {
+            Event event = pendingEvents.poll();
+            currentTime = event.getTime();
             event.execute(this);
-            eventCount++;
-
-            // Check for epidemic
-            if (population.size() > params.maxPop) {
-                handleEpidemic();
-            }
-
-            // Check for observation time
-            if (currentTime >= nextObservationTime) {
-                observe(nextObservationTime);
-                nextObservationTime += observationInterval;
-            }
         }
 
-        printFinalResult();
-    }
-
-    private void handleEpidemic() {
-        population.sort(Collections.reverseOrder());
-
-        // Always keep top 5
-        List<Individual> survivors = new ArrayList<>(population.subList(0, Math.min(5, population.size())));
-
-        // For the rest, survival based on comfort
-        for (int i = 5; i < population.size(); i++) {
-            Individual ind = population.get(i);
-            if (Math.random() <= ind.getComfort()) {
-                survivors.add(ind);
-            }
-        }
-
-        population.clear();
-        population.addAll(survivors);
-    }
-
-    private void observe(double time) {
-        System.out.println("| Observation " + observationCount + ": | Time: " + time + " | Population: " + population.size() + " |");
-        observationCount++;
-    }
-
-
-    private void printParameters() {
-        System.out.println(params.n + " " + params.m + " " +
-                params.start.x + " " + params.start.y + " " +
-                params.end.x + " " + params.end.y + " " +
-                params.costZones.size() + " " +
-                params.obstacles.size() + " " +
-                params.finalTime + " " +
-                params.initialPop + " " +
-                params.maxPop + " " +
-                params.k + " " +
-                params.mu + " " +
-                params.delta + " " +
-                params.rho);
-    }
-
-    private void printFinalResult() {
-        Individual best = findBestIndividual();
-        if (best != null) {
-            System.out.println("Best fit individual: " + best.getPath() + " with cost " + best.getCost(grid));
+        // Print final results
+        System.out.println("Simulation ended at time " + currentTime);
+        if (bestIndividual != null) {
+            System.out.println("Best individual found:");
+            System.out.println("Path: " + bestIndividual.getPath());
+            System.out.println("Comfort: " + bestIndividual.getComfort());
         } else {
-            System.out.println("No individuals survived.");
+            System.out.println("No solution found");
         }
     }
 
-    private double calculateNextMoveTime(Individual ind) {
-        return -Math.log(1 - Math.random()) * (1 - Math.log(ind.getComfort())) * params.delta;
+    private void scheduleEvents(Individual ind) {
+        // Schedule death event
+        double deathTime = currentTime + calculateDeathTime(ind);
+        pendingEvents.add(new DeathEvent(deathTime, ind));
+        ind.setDeathTime(deathTime);
+
+        // Schedule move event
+        double moveTime = currentTime + calculateMoveTime();
+        pendingEvents.add(new MoveEvent(moveTime, ind));
+
+        // Schedule reproduction event
+        double reproductionTime = currentTime + calculateReproductionTime(ind);
+        pendingEvents.add(new ReproductionEvent(reproductionTime, ind));
     }
 
-    private double calculateNextReproductionTime(Individual ind) {
-        return -Math.log(1 - Math.random()) * (1 - Math.log(ind.getComfort())) * params.rho;
+    private double calculateDeathTime(Individual ind) {
+        return -Math.log(Math.random()) / (deathRate * (1 - ind.getComfort()));
     }
 
-    private Individual findBestIndividual() {
-        Individual best = null;
+    private double calculateMoveTime() {
+        return -Math.log(Math.random()) / moveRate;
+    }
 
-        for (Individual ind : population) {
-            if (best == null ||
-                    (ind.getCurrentPosition().equals(params.end) &&
-                            (best.getCurrentPosition().equals(params.end) ?
-                                    ind.getCost(grid) < best.getCost(grid) : true)) ||
-                    (!ind.getCurrentPosition().equals(params.end) &&
-                            !best.getCurrentPosition().equals(params.end) &&
-                            ind.getComfort() > best.getComfort())) {
-                best = ind;
+    private double calculateReproductionTime(Individual ind) {
+        return -Math.log(Math.random()) / (reproductionRate * ind.getComfort());
+    }
+
+    public void handleDeath(Individual individual) {
+        Point currentPos = individual.getCurrentPosition();
+        if (currentPos.x >= 1 && currentPos.x <= gridWidth && currentPos.y >= 1 && currentPos.y <= gridHeight) {
+            System.out.println("💀 Death at time " + currentTime + " for individual at position " + currentPos);
+            System.out.println("Path taken: " + individual.getPath());
+            System.out.println("Comfort level: " + individual.getComfort());
+        }
+        population.remove(individual);
+        if (population.size() < maxPopulation) {
+            // Create new individual to maintain population size
+            Individual newInd = new Individual(startPoint);
+            population.add(newInd);
+            scheduleEvents(newInd);
+        }
+    }
+
+    public void handleMove(Individual individual) {
+        Point current = individual.getCurrentPosition();
+        if (current.equals(endPoint)) {
+            bestIndividual = individual;
+            System.out.println("🎉 Solution found! Path: " + individual.getPath());
+            System.out.println("Comfort: " + individual.getComfort());
+            return;
+        }
+        List<Point> possibleMoves = getPossibleMoves(current);
+        if (!possibleMoves.isEmpty()) {
+            Point nextMove = possibleMoves.get((int) (Math.random() * possibleMoves.size()));
+            individual.move(nextMove);
+            scheduleEvents(individual);
+        }
+    }
+
+    public void handleReproduction(Individual individual) {
+        if (population.size() < maxPopulation && individual.getComfort() > comfortThreshold) {
+            Individual child = individual.reproduce();
+            population.add(child);
+            scheduleEvents(child);
+        }
+    }
+
+    private List<Point> getPossibleMoves(Point current) {
+        List<Point> moves = new ArrayList<>();
+        int[] dx = {-1, 0, 1, 0};
+        int[] dy = {0, 1, 0, -1};
+
+        for (int i = 0; i < 4; i++) {
+            int newX = current.x + dx[i];
+            int newY = current.y + dy[i];
+            Point next = new Point(newX, newY);
+
+            if (isValidMove(next)) {
+                moves.add(next);
             }
         }
 
-        return best;
+        return moves;
+    }
+
+    private boolean isValidMove(Point p) {
+        // Check grid boundaries
+        if (p.x < 0 || p.x >= gridWidth || p.y < 0 || p.y >= gridHeight) {
+            return false;
+        }
+
+        // Check obstacles
+        for (Point obstacle : obstacles) {
+            if (p.x == obstacle.x && p.y == obstacle.y) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static double getEdgeCost(Point p1, Point p2) {
+        // Check if either point is in a cost zone
+        for (CostZone zone : costZones) {
+            if (isPointInZone(p1, zone) || isPointInZone(p2, zone)) {
+                return zone.getCost();
+            }
+        }
+        return 1.0; // Default cost
+    }
+
+    private static boolean isPointInZone(Point p, CostZone zone) {
+        return p.x >= zone.getTopLeft().x && p.x <= zone.getBottomRight().x &&
+               p.y >= zone.getTopLeft().y && p.y <= zone.getBottomRight().y;
+    }
+
+    public static int getGridWidth() {
+        return gridWidth;
+    }
+
+    public static int getGridHeight() {
+        return gridHeight;
+    }
+
+    public static Point getStartPoint() {
+        return startPoint;
+    }
+
+    public static Point getEndPoint() {
+        return endPoint;
+    }
+
+    public static int getMaxCost() {
+        return maxCost;
     }
 }
+

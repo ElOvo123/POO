@@ -2,41 +2,39 @@ import java.util.List;
 import java.util.Set;
 
 public class Params {
-    public final int n, m;
-    public final Point start, end;
-    public final List<CostZone> costZones;
-    public final Set<Point> obstacles;
-    public final int p1, p2, p3, p4, p5, p6, p7;
-    public final int initialPop, maxPop;
-    public final double k, mu, delta, rho, finalTime;
+    public final int n;  // grid width
+    public final int m;  // grid height
+    public final Point start;  // start point
+    public final Point end;  // end point
+    public final List<CostZone> zones;  // cost zones
+    public final List<Point> obstacles;  // obstacles
+    public final int cmax;  // maximum cost
+    public final int tmax;  // maximum time
+    public final int popsize;  // initial population size
+    public final int maxpop;  // maximum population size
+    public final double deathrate;  // death rate
+    public final double reprate;  // reproduction rate
+    public final double mutrate;  // mutation rate
+    public final double moverate;  // move rate
+    public final double comfort;  // comfort threshold
 
-    public Params(int n, int m, ParamsParser.Point start, ParamsParser.Point end,
-                  List<ParamsParser.CostZone> costZones, Set<ParamsParser.Point> obstacles,
-                  int p1, int p2, int p3, int p4, int p5, int p6, int p7,
-                  int initialPop, int maxPop, double k, double mu, double delta, 
-                  double rho, double finalTime) {
+    public Params(int n, int m, Point start, Point end, List<CostZone> zones, List<Point> obstacles,
+                 int cmax, int tmax, int popsize, int maxpop, double deathrate, double reprate,
+                 double mutrate, double moverate, double comfort) {
         this.n = n;
         this.m = m;
-        this.start = new Point(start.x, start.y);
-        this.end = new Point(end.x, end.y);
-        this.costZones = costZones.stream()
-            .map(cz -> new CostZone(
-                new Point(cz.topLeft.x, cz.topLeft.y),
-                new Point(cz.bottomRight.x, cz.bottomRight.y),
-                cz.cost))
-            .toList();
-        this.obstacles = obstacles.stream()
-            .map(p -> new Point(p.x, p.y))
-            .collect(java.util.stream.Collectors.toSet());
-        this.p1 = p1; this.p2 = p2; this.p3 = p3;
-        this.p4 = p4; this.p5 = p5; this.p6 = p6;
-        this.p7 = p7;
-        this.initialPop = initialPop;
-        this.maxPop = maxPop;
-        this.k = k;
-        this.mu = mu;
-        this.delta = delta;
-        this.rho = rho;
-        this.finalTime = finalTime;
+        this.start = start;
+        this.end = end;
+        this.zones = zones;
+        this.obstacles = obstacles;
+        this.cmax = cmax;
+        this.tmax = tmax;
+        this.popsize = popsize;
+        this.maxpop = maxpop;
+        this.deathrate = deathrate;
+        this.reprate = reprate;
+        this.mutrate = mutrate;
+        this.moverate = moverate;
+        this.comfort = comfort;
     }
 }

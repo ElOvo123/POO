@@ -1,13 +1,17 @@
 // Event.java - Abstract base class for simulation events
 public abstract class Event implements Comparable<Event> {
+    protected final EventType type;
     protected final double time;
     protected final Individual individual;
-    protected final EventType type;
 
-    public Event(double time, Individual individual, EventType type) {
+    public Event(EventType type, double time, Individual individual) {
+        this.type = type;
         this.time = time;
         this.individual = individual;
-        this.type = type;
+    }
+
+    public EventType getType() {
+        return type;
     }
 
     public double getTime() {
@@ -18,14 +22,16 @@ public abstract class Event implements Comparable<Event> {
         return individual;
     }
 
-    public EventType getType() {
-        return type;
-    }
-
     @Override
     public int compareTo(Event other) {
         return Double.compare(this.time, other.time);
     }
 
     public abstract void execute(Simulation simulation);
+}
+
+enum EventType {
+    DEATH,
+    MOVE,
+    REPRODUCTION
 }

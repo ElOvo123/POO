@@ -8,7 +8,7 @@ public class Main {
             Params params;
             if (args.length >= 2 && "-f".equalsIgnoreCase(args[0])) {
                 params = ParamsParser.fromFile(args[1]);
-            } else if (args.length == 24 && "-r".equalsIgnoreCase(args[0])) {
+            } else if (args.length == 16 && "-r".equalsIgnoreCase(args[0])) {
                 // Skip the -r flag and pass the rest of the arguments
                 String[] randomArgs = new String[args.length - 1];
                 System.arraycopy(args, 1, randomArgs, 0, args.length - 1);

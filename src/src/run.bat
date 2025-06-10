@@ -10,3 +10,4 @@ echo >nul
 java -jar project.jar -f input1.txt
 echo ===================================================================
 pause
+ 
