@@ -25,4 +25,4 @@ rm manifest.mf
 echo
 echo "Build concluido com sucesso: project.jar"
 echo "===================================================================" 
-read -p "Prima ENTER para sair..."
+#read -p "Prima ENTER para sair..."

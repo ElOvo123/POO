@@ -82,7 +82,6 @@ public static Params fromFile(String filename) throws IOException {
         int moverate  = Integer.parseInt(partes[14]);
   
 
-
         List<CostZone> zones  = new ArrayList<>();
         List<Point> obstacles = new ArrayList<>();
 

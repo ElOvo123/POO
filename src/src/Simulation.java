@@ -32,14 +32,29 @@ public class Simulation {
         costZones = params.zones;
         obstacles = params.obstacles;
         maxCost = params.cmax;
-        maxTime = 500; // Reduced maximum time
-        populationSize = 50; // Reduced population size
-        maxPopulation = 100; // Reduced maximum population
+        maxTime = params.tmax; // Reduced maximum time
+        populationSize = params.popsize; // Reduced population size
+        maxPopulation = params.maxpop; // Reduced maximum population
         deathRate = params.deathrate;
         reproductionRate = params.reprate;
         mutationRate = params.mutrate;
         moveRate = params.moverate;
         comfortThreshold = params.comfort;
+
+        //System.out.println("n"+ gridWidth + " m" + gridHeight);
+        //System.out.println("Start: " + startPoint + ", End: " + endPoint);
+        //System.out.println("Cost Zones: " + costZones);
+        //System.out.println("Obstacles: " + obstacles);
+        //System.out.println("Max Cost: " + maxCost);
+        //System.out.println("Max Time: " + maxTime);
+        //System.out.println("Population Size: " + populationSize);
+        //System.out.println("Max Population: " + maxPopulation);
+        //System.out.println("Death Rate: " + deathRate);
+        //System.out.println("Reproduction Rate: " + reproductionRate);
+        //System.out.println("Mutation Rate: " + mutationRate);
+        //System.out.println("Move Rate: " + moveRate);
+        //System.out.println("Comfort Threshold: " + comfortThreshold);
+
 
         // Initialize simulation state
         population = new ArrayList<>();
@@ -103,7 +118,7 @@ public class Simulation {
     public void handleDeath(Individual individual) {
         Point currentPos = individual.getCurrentPosition();
         if (currentPos.x >= 1 && currentPos.x <= gridWidth && currentPos.y >= 1 && currentPos.y <= gridHeight) {
-            System.out.println("💀 Death at time " + currentTime + " for individual at position " + currentPos);
+            System.out.println("Death at time " + currentTime + " for individual at position " + currentPos);
             System.out.println("Path taken: " + individual.getPath());
             System.out.println("Comfort level: " + individual.getComfort());
         }

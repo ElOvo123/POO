@@ -6,7 +6,7 @@ public class DeathEvent extends Event {
 
     @Override
     public void execute(Simulation simulation) {
-        System.out.println("💀 Death at time " + time);
+        System.out.println("Death at time " + time);
         simulation.handleDeath(individual);
     }
 
