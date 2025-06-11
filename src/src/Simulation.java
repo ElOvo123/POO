@@ -135,7 +135,7 @@ public class Simulation {
         Point current = individual.getCurrentPosition();
         if (current.equals(endPoint)) {
             bestIndividual = individual;
-            System.out.println("🎉 Solution found! Path: " + individual.getPath());
+            System.out.println("Solution found! Path: " + individual.getPath());
             System.out.println("Comfort: " + individual.getComfort());
             return;
         }
