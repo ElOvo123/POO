@@ -95,6 +95,10 @@ public class Individual implements Comparable<Individual> {
         return Math.pow(term1, K) * Math.pow(term2, K);
     }
 
+    public double getPathCost() {
+        return calculatePathCost();
+    }
+
     private double calculatePathCost() {
         double cost = 0;
         for (int i = 0; i < path.size() - 1; i++) {

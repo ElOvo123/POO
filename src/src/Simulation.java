@@ -23,6 +23,13 @@ public class Simulation {
     private double currentTime;
     private Individual bestIndividual;
 
+    private int realizedEvents = 0;
+    private List<Individual> allIndividuals = new ArrayList<>();
+    private double[] observationTimes;
+    private int nextObservationIndex = 0;
+    private Individual bestFitIndividual = null;
+    private boolean finalPointHit = false;
+
     public Simulation(Params params) {
         // Initialize static parameters
         gridWidth = params.n;
@@ -51,25 +58,86 @@ public class Simulation {
         for (int i = 0; i < populationSize; i++) {
             Individual ind = new Individual(startPoint);
             population.add(ind);
+            allIndividuals.add(ind);
             scheduleEvents(ind);
+        }
+        // Prepare observation times (21 evenly spaced)
+        observationTimes = new double[21];
+        for (int i = 0; i <= 20; i++) {
+            observationTimes[i] = i * (maxTime / 20.0);
         }
     }
 
     public void run() {
+        printObservation(); // Observation 0 at time 0
         while (!pendingEvents.isEmpty() && currentTime < maxTime) {
             Event event = pendingEvents.poll();
             currentTime = event.getTime();
             event.execute(this);
+            realizedEvents++;
+            // Print observation if time reached
+            while (nextObservationIndex < observationTimes.length && currentTime >= observationTimes[nextObservationIndex]) {
+                printObservation();
+                nextObservationIndex++;
+            }
         }
+        // Print any remaining observations
+        while (nextObservationIndex < observationTimes.length) {
+            printObservation();
+            nextObservationIndex++;
+        }
+        printBestFitIndividual();
+    }
 
-        // Print final results
-        System.out.println("Simulation ended at time " + currentTime);
-        if (bestIndividual != null) {
-            System.out.println("Best individual found:");
-            System.out.println("Path: " + bestIndividual.getPath());
-            System.out.println("Comfort: " + bestIndividual.getComfort());
+    private void printObservation() {
+        Individual best = getBestIndividual();
+        boolean hit = best != null && best.getCurrentPosition().equals(endPoint);
+        System.out.println("Observation number: " + nextObservationIndex);
+        System.out.println("Present time: " + String.format("%.2f", Math.min(currentTime, maxTime)));
+        System.out.println("Number of realized events: " + realizedEvents);
+        System.out.println("Population size: " + population.size());
+        System.out.println("Final point has been hit: " + (hit ? "yes" : "no"));
+        System.out.print("Path of the best fit individual: ");
+        System.out.println(best != null ? best.getPath() : "[]");
+        System.out.print("Cost/Comfort: ");
+        if (hit) {
+            System.out.println(String.format("%.2f", best.getPathCost()));
         } else {
-            System.out.println("No solution found");
+            System.out.println(String.format("%.5f", best != null ? best.getComfort() : 0.0));
+        }
+        System.out.println();
+    }
+
+    private Individual getBestIndividual() {
+        // Among all individuals ever created, find the best fit
+        Individual best = null;
+        double bestCost = Double.MAX_VALUE;
+        double bestComfort = -1;
+        for (Individual ind : allIndividuals) {
+            boolean atEnd = ind.getCurrentPosition().equals(endPoint);
+            if (atEnd) {
+                double cost = ind.getPathCost();
+                if (cost < bestCost) {
+                    bestCost = cost;
+                    best = ind;
+                }
+            } else if (best == null && ind.getComfort() > bestComfort) {
+                bestComfort = ind.getComfort();
+                best = ind;
+            }
+        }
+        return best;
+    }
+
+    private void printBestFitIndividual() {
+        Individual best = getBestIndividual();
+        System.out.println("Best fit individual:");
+        if (best != null && best.getCurrentPosition().equals(endPoint)) {
+            System.out.println(best.getPath() + " with cost " + String.format("%.2f", best.getPathCost()));
+        } else if (best != null) {
+            System.out.println(best.getPath() + " with comfort " + String.format("%.5f", best.getComfort()));
+        } else {
+            System.out.println("[]");
         }
     }
 
@@ -103,15 +171,16 @@ public class Simulation {
     public void handleDeath(Individual individual) {
         Point currentPos = individual.getCurrentPosition();
         if (currentPos.x >= 1 && currentPos.x <= gridWidth && currentPos.y >= 1 && currentPos.y <= gridHeight) {
-            System.out.println("💀 Death at time " + currentTime + " for individual at position " + currentPos);
-            System.out.println("Path taken: " + individual.getPath());
-            System.out.println("Comfort level: " + individual.getComfort());
+            //System.out.println("Death at time " + currentTime + " for individual at position " + currentPos);
+            //System.out.println("Path taken: " + individual.getPath());
+            //System.out.println("Comfort level: " + individual.getComfort());
         }
         population.remove(individual);
         if (population.size() < maxPopulation) {
             // Create new individual to maintain population size
             Individual newInd = new Individual(startPoint);
             population.add(newInd);
+            allIndividuals.add(newInd);
             scheduleEvents(newInd);
         }
     }
@@ -120,8 +189,8 @@ public class Simulation {
         Point current = individual.getCurrentPosition();
         if (current.equals(endPoint)) {
             bestIndividual = individual;
-            System.out.println("🎉 Solution found! Path: " + individual.getPath());
-            System.out.println("Comfort: " + individual.getComfort());
+            //System.out.println("Solution found! Path: " + individual.getPath());
+            //System.out.println("Comfort: " + individual.getComfort());
             return;
         }
         List<Point> possibleMoves = getPossibleMoves(current);

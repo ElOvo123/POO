@@ -70,11 +70,6 @@ public class Grid {
             }
         }
 
-        // Only print valid moves
-        if (!possibleMoves.isEmpty()) {
-            System.out.println("Possible moves from " + current + ": " + possibleMoves);
-        }
-
         return possibleMoves;
     }
     
