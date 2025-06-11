@@ -7,6 +7,7 @@ if [ ! -f project.jar ]; then
 fi
 
 echo
-java -jar project.jar -f input.txt
+#java -jar project.jar -r 5 4 1 1 5 4 1 4 100 10 100 3 10 1 1
+java -jar project.jar -f ./TESTS/input1.txt
 echo "===================================================================" 
 read -p "Prima ENTER para sair..."
