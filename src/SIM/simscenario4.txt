@@ -26,163 +26,163 @@ Cost/Comfort: 0,14286
 
 Observation number: 1
 Present time: 7,50
-Number of realized events: 1033662
+Number of realized events: 1022521
 Population size: 300
 Final point has been hit: yes
-Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (2,6), (2,7), (3,7), (4,7), (4,8), (5,8), (5,9), (5,10), (6,10), (7,10), (7,9), (8,9), (9,9), (10,9), (10,10)]
-Cost/Comfort: 20,00
+Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (2,8), (2,9), (3,9), (3,10), (4,10), (5,10), (6,10), (7,10), (8,10), (9,10), (10,10)]
+Cost/Comfort: 18,00
 
 Observation number: 2
 Present time: 15,00
-Number of realized events: 4257996
+Number of realized events: 4221861
 Population size: 300
 Final point has been hit: yes
-Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (3,7), (4,7), (5,7), (5,8), (5,9), (6,9), (7,9), (7,10), (8,10), (9,10), (10,10)]
+Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (2,8), (2,9), (3,9), (3,10), (4,10), (5,10), (6,10), (7,10), (8,10), (9,10), (10,10)]
 Cost/Comfort: 18,00
 
 Observation number: 3
 Present time: 22,50
-Number of realized events: 9557514
+Number of realized events: 9489734
 Population size: 300
 Final point has been hit: yes
-Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (3,7), (4,7), (5,7), (5,8), (5,9), (6,9), (7,9), (7,10), (8,10), (9,10), (10,10)]
+Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (2,8), (2,9), (3,9), (3,10), (4,10), (5,10), (6,10), (7,10), (8,10), (9,10), (10,10)]
 Cost/Comfort: 18,00
 
 Observation number: 4
 Present time: 30,00
-Number of realized events: 16826056
+Number of realized events: 16730004
 Population size: 300
 Final point has been hit: yes
-Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (3,7), (4,7), (5,7), (5,8), (5,9), (6,9), (7,9), (7,10), (8,10), (9,10), (10,10)]
+Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (2,8), (2,9), (3,9), (3,10), (4,10), (5,10), (6,10), (7,10), (8,10), (9,10), (10,10)]
 Cost/Comfort: 18,00
 
 Observation number: 5
 Present time: 37,50
-Number of realized events: 26026818
+Number of realized events: 25896032
 Population size: 300
 Final point has been hit: yes
-Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (3,7), (4,7), (5,7), (5,8), (5,9), (6,9), (7,9), (7,10), (8,10), (9,10), (10,10)]
+Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (2,8), (2,9), (3,9), (3,10), (4,10), (5,10), (6,10), (7,10), (8,10), (9,10), (10,10)]
 Cost/Comfort: 18,00
 
 Observation number: 6
 Present time: 45,00
-Number of realized events: 37137096
+Number of realized events: 36961649
 Population size: 300
 Final point has been hit: yes
-Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (3,7), (4,7), (5,7), (5,8), (5,9), (6,9), (7,9), (7,10), (8,10), (9,10), (10,10)]
+Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (2,8), (2,9), (3,9), (3,10), (4,10), (5,10), (6,10), (7,10), (8,10), (9,10), (10,10)]
 Cost/Comfort: 18,00
 
 Observation number: 7
 Present time: 52,50
-Number of realized events: 50165199
+Number of realized events: 49928439
 Population size: 300
 Final point has been hit: yes
-Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (3,7), (4,7), (5,7), (5,8), (5,9), (6,9), (7,9), (7,10), (8,10), (9,10), (10,10)]
+Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (2,8), (2,9), (3,9), (3,10), (4,10), (5,10), (6,10), (7,10), (8,10), (9,10), (10,10)]
 Cost/Comfort: 18,00
 
 Observation number: 8
 Present time: 60,00
-Number of realized events: 65088016
+Number of realized events: 64830305
 Population size: 300
 Final point has been hit: yes
-Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (3,7), (4,7), (5,7), (5,8), (5,9), (6,9), (7,9), (7,10), (8,10), (9,10), (10,10)]
+Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (2,8), (2,9), (3,9), (3,10), (4,10), (5,10), (6,10), (7,10), (8,10), (9,10), (10,10)]
 Cost/Comfort: 18,00
 
 Observation number: 9
 Present time: 67,50
-Number of realized events: 81921229
+Number of realized events: 81626099
 Population size: 300
 Final point has been hit: yes
-Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (3,7), (4,7), (5,7), (5,8), (5,9), (6,9), (7,9), (7,10), (8,10), (9,10), (10,10)]
+Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (2,8), (2,9), (3,9), (3,10), (4,10), (5,10), (6,10), (7,10), (8,10), (9,10), (10,10)]
 Cost/Comfort: 18,00
 
 Observation number: 10
 Present time: 75,00
-Number of realized events: 100666766
+Number of realized events: 100337101
 Population size: 300
 Final point has been hit: yes
-Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (3,7), (4,7), (5,7), (5,8), (5,9), (6,9), (7,9), (7,10), (8,10), (9,10), (10,10)]
+Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (2,8), (2,9), (3,9), (3,10), (4,10), (5,10), (6,10), (7,10), (8,10), (9,10), (10,10)]
 Cost/Comfort: 18,00
 
 Observation number: 11
 Present time: 82,50
-Number of realized events: 121311575
+Number of realized events: 120945025
 Population size: 300
 Final point has been hit: yes
-Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (3,7), (4,7), (5,7), (5,8), (5,9), (6,9), (7,9), (7,10), (8,10), (9,10), (10,10)]
+Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (2,8), (2,9), (3,9), (3,10), (4,10), (5,10), (6,10), (7,10), (8,10), (9,10), (10,10)]
 Cost/Comfort: 18,00
 
 Observation number: 12
 Present time: 90,00
-Number of realized events: 143876336
+Number of realized events: 143475597
 Population size: 300
 Final point has been hit: yes
-Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (3,7), (4,7), (5,7), (5,8), (5,9), (6,9), (7,9), (7,10), (8,10), (9,10), (10,10)]
+Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (2,8), (2,9), (3,9), (3,10), (4,10), (5,10), (6,10), (7,10), (8,10), (9,10), (10,10)]
 Cost/Comfort: 18,00
 
 Observation number: 13
 Present time: 97,50
-Number of realized events: 168353200
+Number of realized events: 167910093
 Population size: 300
 Final point has been hit: yes
-Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (3,7), (4,7), (5,7), (5,8), (5,9), (6,9), (7,9), (7,10), (8,10), (9,10), (10,10)]
+Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (2,8), (2,9), (3,9), (3,10), (4,10), (5,10), (6,10), (7,10), (8,10), (9,10), (10,10)]
 Cost/Comfort: 18,00
 
 Observation number: 14
 Present time: 105,00
-Number of realized events: 194711229
+Number of realized events: 194275234
 Population size: 300
 Final point has been hit: yes
-Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (3,7), (4,7), (5,7), (5,8), (5,9), (6,9), (7,9), (7,10), (8,10), (9,10), (10,10)]
+Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (2,8), (2,9), (3,9), (3,10), (4,10), (5,10), (6,10), (7,10), (8,10), (9,10), (10,10)]
 Cost/Comfort: 18,00
 
 Observation number: 15
 Present time: 112,50
-Number of realized events: 222961998
+Number of realized events: 222557242
 Population size: 300
 Final point has been hit: yes
-Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (3,7), (4,7), (5,7), (5,8), (5,9), (6,9), (7,9), (7,10), (8,10), (9,10), (10,10)]
+Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (2,8), (2,9), (3,9), (3,10), (4,10), (5,10), (6,10), (7,10), (8,10), (9,10), (10,10)]
 Cost/Comfort: 18,00
 
 Observation number: 16
 Present time: 120,00
-Number of realized events: 253100912
+Number of realized events: 252755813
 Population size: 300
 Final point has been hit: yes
-Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (3,7), (4,7), (5,7), (5,8), (5,9), (6,9), (7,9), (7,10), (8,10), (9,10), (10,10)]
+Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (2,8), (2,9), (3,9), (3,10), (4,10), (5,10), (6,10), (7,10), (8,10), (9,10), (10,10)]
 Cost/Comfort: 18,00
 
 Observation number: 17
 Present time: 127,50
-Number of realized events: 285139109
+Number of realized events: 284860918
 Population size: 300
 Final point has been hit: yes
-Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (3,7), (4,7), (5,7), (5,8), (5,9), (6,9), (7,9), (7,10), (8,10), (9,10), (10,10)]
+Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (2,8), (2,9), (3,9), (3,10), (4,10), (5,10), (6,10), (7,10), (8,10), (9,10), (10,10)]
 Cost/Comfort: 18,00
 
 Observation number: 18
 Present time: 135,00
-Number of realized events: 319086610
+Number of realized events: 318876078
 Population size: 300
 Final point has been hit: yes
-Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (3,7), (4,7), (5,7), (5,8), (5,9), (6,9), (7,9), (7,10), (8,10), (9,10), (10,10)]
+Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (2,8), (2,9), (3,9), (3,10), (4,10), (5,10), (6,10), (7,10), (8,10), (9,10), (10,10)]
 Cost/Comfort: 18,00
 
 Observation number: 19
 Present time: 142,50
-Number of realized events: 354942321
+Number of realized events: 354809065
 Population size: 300
 Final point has been hit: yes
-Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (3,7), (4,7), (5,7), (5,8), (5,9), (6,9), (7,9), (7,10), (8,10), (9,10), (10,10)]
+Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (2,8), (2,9), (3,9), (3,10), (4,10), (5,10), (6,10), (7,10), (8,10), (9,10), (10,10)]
 Cost/Comfort: 18,00
 
 Observation number: 20
 Present time: 150,00
-Number of realized events: 392704392
+Number of realized events: 392627743
 Population size: 300
 Final point has been hit: yes
-Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (3,7), (4,7), (5,7), (5,8), (5,9), (6,9), (7,9), (7,10), (8,10), (9,10), (10,10)]
+Path of the best fit individual: [(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (2,8), (2,9), (3,9), (3,10), (4,10), (5,10), (6,10), (7,10), (8,10), (9,10), (10,10)]
 Cost/Comfort: 18,00
 
 Best fit individual:
-[(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (3,7), (4,7), (5,7), (5,8), (5,9), (6,9), (7,9), (7,10), (8,10), (9,10), (10,10)] with cost 18,00
+[(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (2,7), (2,8), (2,9), (3,9), (3,10), (4,10), (5,10), (6,10), (7,10), (8,10), (9,10), (10,10)] with cost 18,00

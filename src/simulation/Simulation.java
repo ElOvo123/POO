@@ -215,7 +215,7 @@ public class Simulation {
             bestIndividual = individual;
             return;
         }
-        List<Point> possibleMoves = getPossibleMoves(current);
+        List<Point> possibleMoves = getPossibleMoves(current, individual);
         int n = possibleMoves.size();
         if (n > 0) {
             double rand = Math.random();
@@ -241,7 +241,7 @@ public class Simulation {
         }
     }
 
-    private List<Point> getPossibleMoves(Point current) {
+    private List<Point> getPossibleMoves(Point current, Individual individual) {
         List<Point> moves = new ArrayList<>();
         // Directions: North, East, South, West (1-based coordinates)
         int[] dx = {0, 1, 0, -1};
@@ -252,7 +252,7 @@ public class Simulation {
             int newY = current.getY() + dy[i];
             Point next = new Point(newX, newY);
 
-            if (isValidMove(next)) {
+            if (isValidMove(next, individual)) {
                 moves.add(next);
             }
         }
@@ -260,7 +260,7 @@ public class Simulation {
         return moves;
     }
 
-    private boolean isValidMove(Point p) {
+    private boolean isValidMove(Point p, Individual individual) {
         // Check grid boundaries
         if (p.getX() < 1 || p.getX() > gridWidth || p.getY() < 1 || p.getY() > gridHeight) {
             return false;
@@ -269,6 +269,14 @@ public class Simulation {
         // Check obstacles
         for (Point obstacle : obstacles) {
             if (p.getX() == obstacle.getX() && p.getY() == obstacle.getY()) {
+                return false;
+            }
+        }
+
+        // Check if point is in individual's path (previous positions)
+        List<Point> path = individual.getPath();
+        for (Point previousPoint : path) {
+            if (p.getX() == previousPoint.getX() && p.getY() == previousPoint.getY()) {
                 return false;
             }
         }
