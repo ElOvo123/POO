@@ -12,7 +12,7 @@ public class Main {
         try {
             Params params;
             if (args.length >= 2 && "-f".equalsIgnoreCase(args[0])) {
-                // Print input file contents as required
+                // Print input file contents
                 List<String> lines = Files.readAllLines(Paths.get(args[1]));
                 for (String line : lines) {
                     System.out.println(line);
@@ -25,7 +25,7 @@ public class Main {
                 String[] randomArgs = new String[args.length - 1];
                 System.arraycopy(args, 1, randomArgs, 0, args.length - 1);
                 params = ParamsParser.randomParams(randomArgs);
-                // Print parameters in input.txt format
+                // Print parameters
                 printParamsAsInputFormat(params);
                 System.out.println();
                 System.out.println();
@@ -43,7 +43,6 @@ public class Main {
     }
 
     private static void printParamsAsInputFormat(Params params) {
-        // Print first line
         System.out.printf("%d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d\n",
             params.getN(), params.getM(),
             params.getStart().getX(), params.getStart().getY(),

@@ -1,8 +1,14 @@
 package simulation;
 
 import java.util.*;
-import model.*;
-import events.*;
+import model.Point;
+import model.Individual;
+import model.CostZone;
+import model.Params;
+import events.Event;
+import events.DeathEvent;
+import events.MoveEvent;
+import events.ReproductionEvent;
 
 // Simulation.java - Main controller
 public class Simulation {
@@ -207,13 +213,21 @@ public class Simulation {
         Point current = individual.getCurrentPosition();
         if (current.equals(endPoint)) {
             bestIndividual = individual;
-            //System.out.println("Solution found! Path: " + individual.getPath());
-            //System.out.println("Comfort: " + individual.getComfort());
             return;
         }
         List<Point> possibleMoves = getPossibleMoves(current);
-        if (!possibleMoves.isEmpty()) {
-            Point nextMove = possibleMoves.get((int) (Math.random() * possibleMoves.size()));
+        int n = possibleMoves.size();
+        if (n > 0) {
+            double rand = Math.random();
+            int chosenIdx = -1;
+            for (int i = 0; i < n; i++) {
+                if (rand <= (double)(i + 1) / n) {
+                    chosenIdx = i;
+                    break;
+                }
+            }
+            if (chosenIdx == -1) chosenIdx = n - 1; // fallback, should not happen
+            Point nextMove = possibleMoves.get(chosenIdx);
             individual.move(nextMove);
             scheduleEvents(individual);
         }

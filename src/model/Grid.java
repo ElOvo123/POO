@@ -6,7 +6,6 @@ import java.util.Set;
 import java.util.Collections;
 import java.util.Arrays;
 
-// Grid.java - Manages the game board
 public class Grid {
     private final int width, height;
     private final Set<Point> obstacles;
@@ -21,14 +20,10 @@ public class Grid {
     }
     
     public int getEdgeCost(Point p1, Point p2) {
-        // Default cost is 1
-        // Check if edge is in any cost zone and return max cost if overlapping
         int maxCost = 1;
         
-        // Check all cost zones to see if this edge is in any of them
         for (CostZone zone : costZones) {
             if (zone.containsEdge(p1, p2)) {
-                // If edge is in a cost zone, track the maximum cost
                 maxCost = Math.max(maxCost, (int)Math.ceil(zone.getCost()));
             }
         }
@@ -37,7 +32,7 @@ public class Grid {
     }
     
     public boolean isValidMove(Point from, Point to) {
-        // Check if move is within grid bounds
+        // Check if within grid bounds
         if (to.getX() < 1 || to.getX() > width || to.getY() < 1 || to.getY() > height) {
             return false;
         }
@@ -47,14 +42,14 @@ public class Grid {
             return false;
         }
         
-        // Check if move is adjacent (N,S,E,W - no diagonals)
+        // Check if move is adjacent
         int dx = Math.abs(from.getX() - to.getX());
         int dy = Math.abs(from.getY() - to.getY());
         return (dx == 1 && dy == 0) || (dx == 0 && dy == 1);
     }
     
     public List<Point> getPossibleMoves(Point current) {
-        // Returns valid adjacent points (N, E, S, W)
+   
         List<Point> possibleMoves = new ArrayList<>();
     
         // Check all four directions

@@ -1,6 +1,5 @@
 package model;
 
-// CostZone.java - Represents a special cost area
 public final class CostZone {
     private final Point topLeft;
     private final Point bottomRight;
@@ -18,7 +17,7 @@ public final class CostZone {
             return false;
         }
         
-        // Then check if they form a border edge
+        // Check if they form a border edge
         return (p1.getX() == topLeft.getX() || p1.getX() == bottomRight.getX() || p1.getY() == topLeft.getY() || p1.getY() == bottomRight.getY()) &&
                (p2.getX() == topLeft.getX() || p2.getX() == bottomRight.getX() || p2.getY() == topLeft.getY() || p2.getY() == bottomRight.getY()) &&
                // And they are adjacent
