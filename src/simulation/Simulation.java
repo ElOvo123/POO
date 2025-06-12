@@ -88,7 +88,6 @@ public class Simulation {
     }
 
     public void run() {
-        printObservation(); // Observation 0 at time 0
         while (!pendingEvents.isEmpty() && currentTime < maxTime) {
             Event event = pendingEvents.poll();
             currentTime = event.getTime();
