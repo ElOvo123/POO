@@ -1,3 +1,5 @@
+package model;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
@@ -36,7 +38,7 @@ public class Grid {
     
     public boolean isValidMove(Point from, Point to) {
         // Check if move is within grid bounds
-        if (to.x < 1 || to.x > width || to.y < 1 || to.y > height) {
+        if (to.getX() < 1 || to.getX() > width || to.getY() < 1 || to.getY() > height) {
             return false;
         }
         
@@ -46,8 +48,8 @@ public class Grid {
         }
         
         // Check if move is adjacent (N,S,E,W - no diagonals)
-        int dx = Math.abs(from.x - to.x);
-        int dy = Math.abs(from.y - to.y);
+        int dx = Math.abs(from.getX() - to.getX());
+        int dy = Math.abs(from.getY() - to.getY());
         return (dx == 1 && dy == 0) || (dx == 0 && dy == 1);
     }
     
@@ -57,10 +59,10 @@ public class Grid {
     
         // Check all four directions
         List<Point> directions = new ArrayList<>(Arrays.asList(
-            new Point(current.x, current.y + 1),    // North
-            new Point(current.x + 1, current.y),    // East
-            new Point(current.x, current.y - 1),    // South
-            new Point(current.x - 1, current.y)     // West
+            new Point(current.getX(), current.getY() + 1),    // North
+            new Point(current.getX() + 1, current.getY()),    // East
+            new Point(current.getX(), current.getY() - 1),    // South
+            new Point(current.getX() - 1, current.getY())     // West
         ));
         Collections.shuffle(directions);  // Randomize the order
 
@@ -74,6 +76,6 @@ public class Grid {
     }
     
     public int calculateDistance(Point p1, Point p2) {
-        return Math.abs(p1.x - p2.x) + Math.abs(p1.y - p2.y);
+        return Math.abs(p1.getX() - p2.getX()) + Math.abs(p1.getY() - p2.getY());
     }
 }

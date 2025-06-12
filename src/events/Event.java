@@ -1,3 +1,8 @@
+package events;
+
+import model.Individual;
+import simulation.Simulation;
+
 // Event.java - Abstract base class for simulation events
 public abstract class Event implements Comparable<Event> {
     protected final EventType type;
@@ -28,10 +33,4 @@ public abstract class Event implements Comparable<Event> {
     }
 
     public abstract void execute(Simulation simulation);
-}
-
-enum EventType {
-    DEATH,
-    MOVE,
-    REPRODUCTION
 }

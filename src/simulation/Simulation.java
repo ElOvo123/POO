@@ -1,4 +1,8 @@
+package simulation;
+
 import java.util.*;
+import model.*;
+import events.*;
 
 // Simulation.java - Main controller
 public class Simulation {
@@ -32,21 +36,21 @@ public class Simulation {
 
     public Simulation(Params params) {
         // Initialize static parameters
-        gridWidth = params.n;
-        gridHeight = params.m;
-        startPoint = params.start;
-        endPoint = params.end;
-        costZones = params.zones;
-        obstacles = params.obstacles;
-        maxCost = params.cmax;
-        maxTime = params.tmax; // Reduced maximum time
-        populationSize = params.popsize; // Reduced population size
-        maxPopulation = params.maxpop; // Reduced maximum population
-        deathRate = params.deathrate;
-        reproductionRate = params.reprate;
-        mutationRate = params.mutrate;
-        moveRate = params.moverate;
-        comfortThreshold = params.comfort;
+        gridWidth = params.getN();
+        gridHeight = params.getM();
+        startPoint = params.getStart();
+        endPoint = params.getEnd();
+        costZones = params.getZones();
+        obstacles = params.getObstacles();
+        maxCost = params.getCmax();
+        maxTime = params.getTmax(); // Reduced maximum time
+        populationSize = params.getPopsize(); // Reduced population size
+        maxPopulation = params.getMaxpop(); // Reduced maximum population
+        deathRate = params.getDeathrate();
+        reproductionRate = params.getReprate();
+        mutationRate = params.getMutrate();
+        moveRate = params.getMoverate();
+        comfortThreshold = params.getComfort();
 
         //System.out.println("n"+ gridWidth + " m" + gridHeight);
         //System.out.println("Start: " + startPoint + ", End: " + endPoint);
@@ -184,7 +188,7 @@ public class Simulation {
 
     public void handleDeath(Individual individual) {
         Point currentPos = individual.getCurrentPosition();
-        if (currentPos.x >= 1 && currentPos.x <= gridWidth && currentPos.y >= 1 && currentPos.y <= gridHeight) {
+        if (currentPos.getX() >= 1 && currentPos.getX() <= gridWidth && currentPos.getY() >= 1 && currentPos.getY() <= gridHeight) {
             //System.out.println("Death at time " + currentTime + " for individual at position " + currentPos);
             //System.out.println("Path taken: " + individual.getPath());
             //System.out.println("Comfort level: " + individual.getComfort());
@@ -226,12 +230,12 @@ public class Simulation {
     private List<Point> getPossibleMoves(Point current) {
         List<Point> moves = new ArrayList<>();
         // Directions: North, East, South, West (1-based coordinates)
-        int[] dx = {0, 1, 0, -1};  // Changed from {-1, 0, 1, 0}
-        int[] dy = {1, 0, -1, 0};  // Changed from {0, 1, 0, -1}
+        int[] dx = {0, 1, 0, -1};
+        int[] dy = {1, 0, -1, 0};
 
         for (int i = 0; i < 4; i++) {
-            int newX = current.x + dx[i];
-            int newY = current.y + dy[i];
+            int newX = current.getX() + dx[i];
+            int newY = current.getY() + dy[i];
             Point next = new Point(newX, newY);
 
             if (isValidMove(next)) {
@@ -244,13 +248,13 @@ public class Simulation {
 
     private boolean isValidMove(Point p) {
         // Check grid boundaries
-        if (p.x < 1 || p.x > gridWidth || p.y < 1 || p.y > gridHeight) {
+        if (p.getX() < 1 || p.getX() > gridWidth || p.getY() < 1 || p.getY() > gridHeight) {
             return false;
         }
 
         // Check obstacles
         for (Point obstacle : obstacles) {
-            if (p.x == obstacle.x && p.y == obstacle.y) {
+            if (p.getX() == obstacle.getX() && p.getY() == obstacle.getY()) {
                 return false;
             }
         }
@@ -269,8 +273,8 @@ public class Simulation {
     }
 
     private static boolean isPointInZone(Point p, CostZone zone) {
-        return p.x >= zone.getTopLeft().x && p.x <= zone.getBottomRight().x &&
-               p.y >= zone.getTopLeft().y && p.y <= zone.getBottomRight().y;
+        return p.getX() >= zone.getTopLeft().getX() && p.getX() <= zone.getBottomRight().getX() &&
+               p.getY() >= zone.getTopLeft().getY() && p.getY() <= zone.getBottomRight().getY();
     }
 
     public static int getGridWidth() {
@@ -293,4 +297,3 @@ public class Simulation {
         return maxCost;
     }
 }
-
