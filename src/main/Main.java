@@ -1,6 +1,11 @@
+package main;
+
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import model.*;
+import simulation.Simulation;
+import util.ParamsParser;
 
 public class Main {
     public static void main(String[] args) {
@@ -67,6 +72,3 @@ public class Main {
         }
     }
 }
-
-
-

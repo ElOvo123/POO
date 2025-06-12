@@ -1,5 +1,9 @@
+package model;
+
 import java.util.List;
 import java.util.ArrayList;
+import simulation.Simulation;
+
 // Individual.java - Represents a potential solution
 public class Individual implements Comparable<Individual> {
     private List<Point> path;

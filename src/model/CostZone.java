@@ -1,3 +1,5 @@
+package model;
+
 // CostZone.java - Represents a special cost area
 public class CostZone {
     private Point topLeft;

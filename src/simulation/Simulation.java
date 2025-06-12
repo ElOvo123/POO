@@ -1,4 +1,8 @@
+package simulation;
+
 import java.util.*;
+import model.*;
+import events.*;
 
 // Simulation.java - Main controller
 public class Simulation {
@@ -294,4 +298,3 @@ public class Simulation {
         return maxCost;
     }
 }
-

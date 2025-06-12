@@ -1,6 +1,7 @@
-import java.util.List;
-import java.util.Comparator;
+package events;
 
+import simulation.Simulation;
+import model.Individual;
 
 public class MoveEvent extends Event {
     public MoveEvent(double time, Individual individual) {

@@ -1,3 +1,9 @@
+package events;
+
+import simulation.Simulation;
+import model.Individual;
+
+// DeathEvent.java - Represents a death event for an individual in the simulation
 public class DeathEvent extends Event {
 
     public DeathEvent(double time, Individual individual) {
@@ -11,4 +17,3 @@ public class DeathEvent extends Event {
     }
 
 }
-

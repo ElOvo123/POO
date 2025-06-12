@@ -1,4 +1,8 @@
+package simulation;
+
 import java.util.PriorityQueue;
+import events.Event;
+
 // PEC.java - Manages events in priority order
 public class PEC {
     private final PriorityQueue<Event> events;
