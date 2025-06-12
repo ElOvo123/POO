@@ -1,34 +1,25 @@
 package model;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
-public class Params {
-    public final int n;  // grid width
-    public final int m;  // grid height
-    public final Point start;  // start point
-    public final Point end;  // end point
-    public final List<CostZone> zones;  // cost zones
-    public final List<Point> obstacles;  // obstacles
-    public final int cmax;  // maximum cost
-    public final int tmax;  // maximum time
-    public final int popsize;  // initial population size
-    public final int maxpop;  // maximum population size
-    public final double deathrate;  // death rate
-    public final double reprate;  // reproduction rate
-    public final double mutrate;  // mutation rate
-    public final double moverate;  // move rate
-    public final double comfort;  // comfort threshold
+public final class Params {
+    private final int n, m;
+    private final Point start, end;
+    private final List<CostZone> zones;
+    private final List<Point> obstacles;
+    private final int cmax, tmax, popsize, maxpop;
+    private final double deathrate, reprate, mutrate, moverate, comfort;
 
     public Params(int n, int m, Point start, Point end, List<CostZone> zones, List<Point> obstacles,
-                 int cmax, int tmax, int popsize, int maxpop, double deathrate, double reprate,
-                 double mutrate, double moverate, double comfort) {
+                  int cmax, int tmax, int popsize, int maxpop, double deathrate, double reprate,
+                  double mutrate, double moverate, double comfort) {
         this.n = n;
         this.m = m;
         this.start = start;
         this.end = end;
-        this.zones = zones;
-        this.obstacles = obstacles;
+        this.zones = Collections.unmodifiableList(zones);
+        this.obstacles = Collections.unmodifiableList(obstacles);
         this.cmax = cmax;
         this.tmax = tmax;
         this.popsize = popsize;
@@ -39,4 +30,20 @@ public class Params {
         this.moverate = moverate;
         this.comfort = comfort;
     }
+
+    public int getN() { return n; }
+    public int getM() { return m; }
+    public Point getStart() { return start; }
+    public Point getEnd() { return end; }
+    public List<CostZone> getZones() { return zones; }
+    public List<Point> getObstacles() { return obstacles; }
+    public int getCmax() { return cmax; }
+    public int getTmax() { return tmax; }
+    public int getPopsize() { return popsize; }
+    public int getMaxpop() { return maxpop; }
+    public double getDeathrate() { return deathrate; }
+    public double getReprate() { return reprate; }
+    public double getMutrate() { return mutrate; }
+    public double getMoverate() { return moverate; }
+    public double getComfort() { return comfort; }
 }

@@ -1,12 +1,13 @@
 package model;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
 import simulation.Simulation;
 
 // Individual.java - Represents a potential solution
 public class Individual implements Comparable<Individual> {
-    private List<Point> path;
+    private final List<Point> path;
     private double comfort;
     private double deathTime;
     private static final double K = 1.0; // comfort sensitivity parameter
@@ -31,7 +32,7 @@ public class Individual implements Comparable<Individual> {
     }
 
     public List<Point> getPath() {
-        return path;
+        return Collections.unmodifiableList(path);
     }
 
     public double getDeathTime() {
@@ -114,7 +115,7 @@ public class Individual implements Comparable<Individual> {
     }
 
     private int calculateDistanceToEnd(Point current, Point end) {
-        return Math.abs(current.x - end.x) + Math.abs(current.y - end.y);
+        return Math.abs(current.getX() - end.getX()) + Math.abs(current.getY() - end.getY());
     }
 
     @Override

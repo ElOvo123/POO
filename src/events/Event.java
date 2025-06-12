@@ -34,9 +34,3 @@ public abstract class Event implements Comparable<Event> {
 
     public abstract void execute(Simulation simulation);
 }
-
-enum EventType {
-    DEATH,
-    MOVE,
-    REPRODUCTION
-}

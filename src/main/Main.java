@@ -45,29 +45,29 @@ public class Main {
     private static void printParamsAsInputFormat(Params params) {
         // Print first line
         System.out.printf("%d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d\n",
-            params.n, params.m,
-            params.start.x, params.start.y,
-            params.end.x, params.end.y,
-            params.zones.size(), params.obstacles.size(),
-            params.tmax, params.popsize, params.maxpop,
-            (int)params.comfort, // k
-            (int)params.deathrate, // mu
-            (int)params.moverate, // delta
-            (int)params.reprate // rho
+            params.getN(), params.getM(),
+            params.getStart().getX(), params.getStart().getY(),
+            params.getEnd().getX(), params.getEnd().getY(),
+            params.getZones().size(), params.getObstacles().size(),
+            params.getTmax(), params.getPopsize(), params.getMaxpop(),
+            (int)params.getComfort(), // k
+            (int)params.getDeathrate(), // mu
+            (int)params.getMoverate(), // delta
+            (int)params.getReprate() // rho
         );
-        if (!params.zones.isEmpty()) {
+        if (!params.getZones().isEmpty()) {
             System.out.println("special cost zones:");
-            for (CostZone z : params.zones) {
-                System.out.printf("%d %d %d %d\n", z.getTopLeft().x, z.getTopLeft().y, z.getBottomRight().x, z.getBottomRight().y);
+            for (CostZone z : params.getZones()) {
+                System.out.printf("%d %d %d %d\n", z.getTopLeft().getX(), z.getTopLeft().getY(), z.getBottomRight().getX(), z.getBottomRight().getY());
             }
-            for (CostZone z : params.zones) {
+            for (CostZone z : params.getZones()) {
                 System.out.printf("%.2f\n", z.getCost());
             }
         }
-        if (!params.obstacles.isEmpty()) {
+        if (!params.getObstacles().isEmpty()) {
             System.out.println("obstacles:");
-            for (Point p : params.obstacles) {
-                System.out.printf("%d %d\n", p.x, p.y);
+            for (Point p : params.getObstacles()) {
+                System.out.printf("%d %d\n", p.getX(), p.getY());
             }
         }
     }
