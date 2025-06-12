@@ -43,7 +43,7 @@ public class Main {
     }
 
     private static void printParamsAsInputFormat(Params params) {
-        System.out.printf("%d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d\n",
+        System.out.printf("%d %d %d %d %d %d %d %d %d %d %d %d %d %d %d\n",
             params.getN(), params.getM(),
             params.getStart().getX(), params.getStart().getY(),
             params.getEnd().getX(), params.getEnd().getY(),

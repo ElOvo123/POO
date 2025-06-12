@@ -10,7 +10,6 @@ import events.DeathEvent;
 import events.MoveEvent;
 import events.ReproductionEvent;
 
-// Simulation.java - Main controller
 public class Simulation {
     private static int gridWidth;
     private static int gridHeight;
@@ -49,31 +48,16 @@ public class Simulation {
         costZones = params.getZones();
         obstacles = params.getObstacles();
         maxCost = params.getCmax();
-        maxTime = params.getTmax(); // Reduced maximum time
-        populationSize = params.getPopsize(); // Reduced population size
-        maxPopulation = params.getMaxpop(); // Reduced maximum population
+        maxTime = params.getTmax();
+        populationSize = params.getPopsize();
+        maxPopulation = params.getMaxpop();
         deathRate = params.getDeathrate();
         reproductionRate = params.getReprate();
         mutationRate = params.getMutrate();
         moveRate = params.getMoverate();
         comfortThreshold = params.getComfort();
 
-        //System.out.println("n"+ gridWidth + " m" + gridHeight);
-        //System.out.println("Start: " + startPoint + ", End: " + endPoint);
-        //System.out.println("Cost Zones: " + costZones);
-        //System.out.println("Obstacles: " + obstacles);
-        //System.out.println("Max Cost: " + maxCost);
-        //System.out.println("Max Time: " + maxTime);
-        //System.out.println("Population Size: " + populationSize);
-        //System.out.println("Max Population: " + maxPopulation);
-        //System.out.println("Death Rate: " + deathRate);
-        //System.out.println("Reproduction Rate: " + reproductionRate);
-        //System.out.println("Mutation Rate: " + mutationRate);
-        //System.out.println("Move Rate: " + moveRate);
-        //System.out.println("Comfort Threshold: " + comfortThreshold);
-
-
-        // Initialize simulation state
+        // Initialize simulation
         population = new ArrayList<>();
         pendingEvents = new PriorityQueue<>(Comparator.comparingDouble(Event::getTime));
         currentTime = 0;
@@ -86,7 +70,7 @@ public class Simulation {
             allIndividuals.add(ind);
             scheduleEvents(ind);
         }
-        // Prepare observation times (21 evenly spaced)
+
         observationTimes = new double[21];
         for (int i = 0; i <= 20; i++) {
             observationTimes[i] = i * (maxTime / 20.0);
@@ -105,7 +89,7 @@ public class Simulation {
                 nextObservationIndex++;
             }
         }
-        // Print any remaining observations
+        // Print remaning observations
         while (nextObservationIndex < observationTimes.length) {
             printObservation();
             nextObservationIndex++;
@@ -133,7 +117,6 @@ public class Simulation {
     }
 
     private Individual getBestIndividual() {
-        // Among all individuals ever created, find the best fit
         Individual best = null;
         double bestCost = Double.MAX_VALUE;
         double bestComfort = -1;
@@ -166,16 +149,14 @@ public class Simulation {
     }
 
     private void scheduleEvents(Individual ind) {
-        // Schedule death event
+
         double deathTime = currentTime + calculateDeathTime(ind);
         pendingEvents.add(new DeathEvent(deathTime, ind));
         ind.setDeathTime(deathTime);
 
-        // Schedule move event
         double moveTime = currentTime + calculateMoveTime();
         pendingEvents.add(new MoveEvent(moveTime, ind));
 
-        // Schedule reproduction event
         double reproductionTime = currentTime + calculateReproductionTime(ind);
         pendingEvents.add(new ReproductionEvent(reproductionTime, ind));
     }
@@ -226,7 +207,7 @@ public class Simulation {
                     break;
                 }
             }
-            if (chosenIdx == -1) chosenIdx = n - 1; // fallback, should not happen
+            if (chosenIdx == -1) chosenIdx = n - 1;
             Point nextMove = possibleMoves.get(chosenIdx);
             individual.move(nextMove);
             scheduleEvents(individual);
@@ -243,7 +224,7 @@ public class Simulation {
 
     private List<Point> getPossibleMoves(Point current, Individual individual) {
         List<Point> moves = new ArrayList<>();
-        // Directions: North, East, South, West (1-based coordinates)
+        //North, East, South, West
         int[] dx = {0, 1, 0, -1};
         int[] dy = {1, 0, -1, 0};
 
@@ -266,7 +247,7 @@ public class Simulation {
             return false;
         }
 
-        // Check obstacles
+        // Check if there ar obstacles
         for (Point obstacle : obstacles) {
             if (p.getX() == obstacle.getX() && p.getY() == obstacle.getY()) {
                 return false;
@@ -291,7 +272,7 @@ public class Simulation {
                 return zone.getCost();
             }
         }
-        return 1.0; // Default cost
+        return 1.0; // Default 1
     }
 
     private static boolean isPointInZone(Point p, CostZone zone) {

@@ -2,7 +2,6 @@ package model;
 
 import java.util.Objects;
 
-// Point.java - Simple coordinate class
 public final class Point {
     private final int x;
     private final int y;
